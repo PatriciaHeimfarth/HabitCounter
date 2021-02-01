@@ -24,3 +24,24 @@ Route::get('habits', function() {
     //http://127.0.0.1:8000/api/habits
     return Habits::all();
 });
+
+Route::get('habits/{id}', function($id) {
+    return Habits::find($id);
+});
+
+/*Route::post('habits', function(Request $request) {
+    return Habits::create($request->all);
+});
+
+Route::put('habits/{id}', function(Request $request, $id) {
+    $habit = Habits::findOrFail($id);
+    $habit->update($request->all());
+
+    return $habit;
+});
+
+Route::delete('habits/{id}', function($id) {
+    Habits::find($id)->delete();
+
+    return 204;
+});*/
