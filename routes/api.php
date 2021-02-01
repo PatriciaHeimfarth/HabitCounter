@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Controllers\HabitsController;
+use App\Models\Habits;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+    
+});
+
+Route::get('habits', function() {
+    //http://127.0.0.1:8000/api/habits
+    return Habits::all();
 });
