@@ -10,4 +10,15 @@ class HabitsController extends Controller
 	{
 	    return Habits::all();
 	}
+
+	public function createHabit(Request $request) {
+		$habit = new Habits;
+		$habit->name = $request->name;
+		$habit->streak = $request->streak;
+		$habit->save();
+	
+		return response()->json([
+			"message" => "habit record created"
+		], 201);
+	  }
 }

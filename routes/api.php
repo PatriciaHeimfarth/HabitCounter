@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Controllers\HabitsController;
+use App\Http\Controllers\HabitsController;
 use App\Models\Habits;
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +29,9 @@ Route::get('habits/{id}', function($id) {
     return Habits::find($id);
 });
 
-/*Route::post('habits', function(Request $request) {
-    return Habits::create($request->all);
-});
+Route::post('/habits','App\Http\Controllers\HabitsController@createHabit');
 
+/*
 Route::put('habits/{id}', function(Request $request, $id) {
     $habit = Habits::findOrFail($id);
     $habit->update($request->all());

@@ -2,10 +2,43 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class Main extends Component {
+    constructor() {
+
+        super();
+        this.state = {
+            habits: [],
+        }
+    }
+
+    componentDidMount() {
+        fetch('/api/habits')
+            .then(response => {
+                return response.json();
+            })
+            .then(habits => {
+                this.setState({ habits });
+            });
+    }
+
+    renderHabits() {
+        return this.state.habits.map(habit => {
+            return (
+                <li key={habit.id} >
+                    { habit.name}
+                    { habit.streak}
+                </li>
+            );
+        })
+    }
+
+
     render() {
         return (
             <div>
-                <h3>All Habits</h3>
+                <ul>
+                    {this.renderHabits()}
+                </ul>
+
             </div>
         );
     }
