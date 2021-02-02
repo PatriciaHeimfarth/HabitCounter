@@ -31,14 +31,11 @@ Route::get('habits/{id}', function($id) {
 
 Route::post('/habits','App\Http\Controllers\HabitsController@createHabit');
 
+Route::put('habits/{id}', 'App\Http\Controllers\HabitsController@updateHabit');
+
+
 /*
-Route::put('habits/{id}', function(Request $request, $id) {
-    $habit = Habits::findOrFail($id);
-    $habit->update($request->all());
-
-    return $habit;
-});
-
+ 
 Route::delete('habits/{id}', function($id) {
     Habits::find($id)->delete();
 
