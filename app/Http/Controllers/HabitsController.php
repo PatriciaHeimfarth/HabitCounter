@@ -32,7 +32,7 @@ class HabitsController extends Controller
 			error_log( $habit);
 			return response()->json([
 				
-				"message" => "records updated successfully"
+				"message" => "record updated successfully"
 			], 200);
 			} else {
 				error_log( $request);
@@ -43,5 +43,20 @@ class HabitsController extends Controller
 			
 		}
 	}
+
+	public function deleteHabit ($id) {
+		if(Habits::where('id', $id)->exists()) {
+		  $habit = Habits::find($id);
+		  $habit->delete();
+  
+		  return response()->json([
+			"message" => "record deleted"
+		  ], 202);
+		} else {
+		  return response()->json([
+			"message" => "Habit not found"
+		  ], 404);
+		}
+	  }
 	
 }
