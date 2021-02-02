@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import AddingHabit from './AddingHabit'; 
+import AddingHabit from './AddingHabit';
 
 class Main extends Component {
     constructor() {
@@ -32,6 +32,28 @@ class Main extends Component {
         })
     }
 
+    handleAddHabit(habit) {
+        fetch('api/habits/', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+
+            body: JSON.stringify(habit)
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                this.setState((prevState) => ({
+                    habits: prevState.habits.concat(data),
+                    currentHabit: data
+                }))
+            })
+
+    }
+
 
     render() {
         return (
@@ -39,7 +61,7 @@ class Main extends Component {
                 <ul>
                     {this.renderHabits()}
                 </ul>
-                <AddingHabit   /> 
+                <AddingHabit onAdd={this.handleAddHabit} />
 
             </div>
         );

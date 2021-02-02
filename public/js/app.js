@@ -2157,12 +2157,37 @@ var Main = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "handleAddHabit",
+    value: function handleAddHabit(habit) {
+      var _this3 = this;
+
+      fetch('api/habits/', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(habit)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this3.setState(function (prevState) {
+          return {
+            habits: prevState.habits.concat(data),
+            currentHabit: data
+          };
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("ul", {
           children: this.renderHabits()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddingHabit__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_AddingHabit__WEBPACK_IMPORTED_MODULE_3__.default, {
+          onAdd: this.handleAddHabit
+        })]
       });
     }
   }]);
