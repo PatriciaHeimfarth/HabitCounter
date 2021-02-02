@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import AddingHabit from './AddingHabit'; 
 
 class Main extends Component {
     constructor() {
@@ -38,6 +39,7 @@ class Main extends Component {
                 <ul>
                     {this.renderHabits()}
                 </ul>
+                <AddingHabit   /> 
 
             </div>
         );
